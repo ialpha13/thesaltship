@@ -1,0 +1,138 @@
+:root {
+  --theme-bg: #f6f2ea;
+  --theme-bg-soft: #fbf8f2;
+  --theme-surface: #fffdf9;
+  --theme-surface-2: #f7f0e6;
+  --theme-text: #232730;
+  --theme-text-muted: #5f6672;
+  --theme-accent: #ef820a;
+  --theme-accent-dark: #b86410;
+  --theme-border: rgba(168, 136, 109, 0.28);
+}
+
+body,
+.home-page,
+.products-page,
+.categories-page,
+.contact-page {
+  background: var(--theme-bg) !important;
+  color: var(--theme-text);
+}
+
+.home-categories,
+.home-products,
+.home-quote,
+.categories-main,
+.contact-cards,
+.contact-why,
+.products-body,
+.product-detail,
+.about-page {
+  background: transparent !important;
+}
+
+.product-card,
+.category-card,
+.contact-card,
+.variation-visual,
+.contact-form-card,
+.product-detail-summary,
+.product-detail-media,
+.products-filterbar,
+.products-top-benefits,
+.home-quote__form,
+.home-quote__panel,
+.home-category-slide,
+.home-product-card-shell {
+  background: linear-gradient(180deg, var(--theme-surface), var(--theme-surface-2)) !important;
+  border-color: var(--theme-border) !important;
+}
+
+h1, h2, h3,
+.products-title,
+.categories-hero__text h1,
+.contact-intro h1,
+.home-section-head h2,
+.product-card-title,
+.variation-visual-name {
+  color: var(--theme-text) !important;
+}
+
+p,
+.products-copy,
+.product-card-desc,
+.contact-card p,
+.home-section-head p,
+.categories-hero__text p,
+.contact-intro > p,
+.why-grid p,
+.product-detail-summary p {
+  color: var(--theme-text-muted) !important;
+}
+
+.home-kicker,
+.products-kicker,
+.categories-head h2,
+.contact-cards-kicker,
+.contact-why-kicker,
+.card-label,
+.product-stat-label,
+.about-eyebrow,
+.eyebrow {
+  color: var(--theme-accent-dark) !important;
+}
+
+.product-card-link,
+.home-category-slide__cta,
+.home-product-add,
+.category-card__cta,
+.product-card-variations,
+.site-footer__social a {
+  color: var(--theme-accent-dark) !important;
+}
+
+.home-category-slide__icon,
+.card-icon,
+.why-grid span,
+.products-top-benefits span,
+.product-card-link--icon,
+.about-value-card__icon,
+.about-partner__badges span {
+  color: var(--theme-accent-dark) !important;
+  border-color: rgba(239, 130, 10, 0.34) !important;
+  background: linear-gradient(180deg, #fffaf2, #f1e4d0) !important;
+}
+
+/* Hero text color unification:
+   Use white text on all hero sections except contact hero. */
+.hero-card h1,
+.hero-card h2,
+.hero-card h3,
+.hero-card p,
+.about-hero h1,
+.about-hero h2,
+.about-hero h3,
+.about-hero p,
+.categories-hero h1,
+.categories-hero h2,
+.categories-hero h3,
+.categories-hero p,
+.products-hero h1,
+.products-hero h2,
+.products-hero h3,
+.products-hero p,
+.products-hero .products-kicker,
+.products-hero .products-copy {
+  color: #ffffff !important;
+}
+
+.contact-hero h1,
+.contact-hero h2,
+.contact-hero h3,
+.contact-hero p,
+.contact-hero .eyebrow,
+.contact-hero .contact-intro > p,
+.contact-hero .contact-form-card h2,
+.contact-hero .contact-form label span {
+  color: inherit !important;
+}

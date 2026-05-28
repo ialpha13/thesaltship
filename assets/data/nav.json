@@ -1,0 +1,7 @@
+﻿[
+  {"id":"home","label":"Home"},
+  {"id":"products","label":"Products"},
+  {"id":"categories","label":"Categories"},
+  {"id":"quality","label":"Quality"},
+  {"id":"contact","label":"Contact"}
+]

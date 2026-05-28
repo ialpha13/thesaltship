@@ -1,0 +1,291 @@
+{
+    "categories":  [
+                       "All",
+                       "Decor",
+                       "Wellness",
+                       "Edible",
+                       "Animal"
+                   ],
+    "products":  [
+                     {
+                         "id":  1,
+                         "title":  "Himalayan Salt Lamp 1-2 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Natural pink Himalayan salt lamp, 1-2 kg. Emits a warm amber glow and releases negative ions for a calming atmosphere."
+                     },
+                     {
+                         "id":  2,
+                         "title":  "Himalayan Salt Lamp 2-3 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Natural pink Himalayan salt lamp, 2-3 kg. Perfect for living rooms and bedrooms to create a relaxing ambiance."
+                     },
+                     {
+                         "id":  3,
+                         "title":  "Himalayan Salt Lamp 3-4 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Hand-carved pink salt lamp, 3-4 kg. A stunning decorative piece with proven air-purifying benefits."
+                     },
+                     {
+                         "id":  4,
+                         "title":  "Himalayan Salt Lamp 4-5 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Natural pink Himalayan crystal lamp, 4-5 kg. Ideal for medium to large spaces seeking therapeutic lighting."
+                     },
+                     {
+                         "id":  5,
+                         "title":  "Himalayan Salt Lamp 5-6 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Authentic pink salt lamp, 5-6 kg. Sourced from the Khewra Salt Mine, Pakistan\u0027s finest mineral deposits."
+                     },
+                     {
+                         "id":  6,
+                         "title":  "Himalayan Salt Lamp 6-7 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Large pink Himalayan salt lamp, 6-7 kg. Creates a warm, soothing glow that enhances any room decor."
+                     },
+                     {
+                         "id":  7,
+                         "title":  "Himalayan Salt Lamp 7-8 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Premium pink crystal lamp, 7-8 kg. A bold statement piece radiating natural mineral warmth and beauty."
+                     },
+                     {
+                         "id":  8,
+                         "title":  "Himalayan Salt Lamp 8-9 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Extra-large pink Himalayan lamp, 8-9 kg. Fills large spaces with a soothing amber glow and negative ions."
+                     },
+                     {
+                         "id":  9,
+                         "title":  "Himalayan Salt Lamp 9-10 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/Himaliyansaltlamp.webp",
+                         "desc":  "Statement-size pink salt lamp, 9-10 kg. Our largest standard lamp for lobbies, offices, and grand spaces."
+                     },
+                     {
+                         "id":  10,
+                         "title":  "Himalayan White Lamp 1-2 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/whitesaltlamp.webp",
+                         "desc":  "Rare white Himalayan crystal lamp, 1-2 kg. Emits a pure, cool glow, rarer and more prized than pink varieties."
+                     },
+                     {
+                         "id":  11,
+                         "title":  "Himalayan White Lamp 2-3 kg",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/whitesaltlamp.webp",
+                         "desc":  "Premium white salt crystal lamp, 2-3 kg. Prized for its purity and elegant ivory appearance when lit."
+                     },
+                     {
+                         "id":  12,
+                         "title":  "Salt Tiles 20 x 10 x 2 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Himalayan salt cooking and serving tiles, 20 x 10 x 2 cm. Perfect for chilling, grilling, and plating gourmet meals."
+                     },
+                     {
+                         "id":  13,
+                         "title":  "Salt Tiles 20 x 10 x 2.5 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Durable Himalayan salt tiles, 20 x 10 x 2.5 cm. Ideal for spa walls, cooking surfaces, and decorative panels."
+                     },
+                     {
+                         "id":  14,
+                         "title":  "Salt Tiles 20 x 10 x 5 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Thick Himalayan salt blocks, 20 x 10 x 5 cm. Superior heat retention for searing meats and roasting vegetables."
+                     },
+                     {
+                         "id":  15,
+                         "title":  "Salt Tiles 20 x 20 x 2.5 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Square Himalayan salt tiles, 20 x 20 x 2.5 cm. Versatile for cooking, serving, and salt cave wall applications."
+                     },
+                     {
+                         "id":  16,
+                         "title":  "Salt Tiles 20 x 20 x 5 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Heavy-duty square salt blocks, 20 x 20 x 5 cm. Excellent for high-heat cooking and halotherapy installations."
+                     },
+                     {
+                         "id":  17,
+                         "title":  "Salt Tiles 30 x 20 x 4 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Large Himalayan salt tiles, 30 x 20 x 4 cm. Wide surface ideal for serving platters and spa therapy walls."
+                     },
+                     {
+                         "id":  18,
+                         "title":  "Salt Tiles 30 x 20 x 5 cm",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/salttiles.webp",
+                         "desc":  "Largest standard salt tiles, 30 x 20 x 5 cm. Maximum cooking surface for professional chefs and wellness spas."
+                     },
+                     {
+                         "id":  19,
+                         "title":  "Light Pink Salt 3-5 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/ediblepinksalt.webp",
+                         "desc":  "Coarse light pink Himalayan salt, 3-5 mm granules. Ideal for grinders and gourmet seasoning applications."
+                     },
+                     {
+                         "id":  20,
+                         "title":  "Light Pink Salt 1-2 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/ediblepinksalt.webp",
+                         "desc":  "Medium light pink Himalayan salt, 1-2 mm. Perfect for table use, marinades, and everyday culinary applications."
+                     },
+                     {
+                         "id":  21,
+                         "title":  "Light Pink Salt 0.1-0.2 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/ediblepinksalt.webp",
+                         "desc":  "Fine light pink Himalayan salt, 0.1-0.2 mm. Ultra-fine powder for baking, finishing, and gourmet cooking."
+                     },
+                     {
+                         "id":  22,
+                         "title":  "Dark Pink Salt 3-5 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/ediblelightpinksalt.webp",
+                         "desc":  "Coarse dark pink Himalayan salt, 3-5 mm. Rich mineral profile for grinders, bath salts, and gourmet seasoning."
+                     },
+                     {
+                         "id":  23,
+                         "title":  "Dark Pink Salt 1-2 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/ediblelightpinksalt.webp",
+                         "desc":  "Medium dark pink Himalayan salt, 1-2 mm. Bold mineral flavor ideal for meat rubs and savory recipes."
+                     },
+                     {
+                         "id":  24,
+                         "title":  "Dark Pink Salt 0.1-0.2 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/ediblelightpinksalt.webp",
+                         "desc":  "Fine dark pink Himalayan salt powder, 0.1-0.2 mm. Intense mineral taste for spice blends and finishing salts."
+                     },
+                     {
+                         "id":  25,
+                         "title":  "Rough Rocks",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/roughsaltrocks.webp",
+                         "desc":  "Raw unprocessed Himalayan salt rocks. Used for licking blocks, d�cor, salt grinding, and industrial applications."
+                     },
+                     {
+                         "id":  26,
+                         "title":  "Salt Massage Stones",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/saltmassagestones.webp",
+                         "desc":  "Smooth hand-carved Himalayan salt massage stones. Heated or chilled for therapeutic deep tissue massage therapy."
+                     },
+                     {
+                         "id":  27,
+                         "title":  "Horse Licking Block 1-2 kg",
+                         "category":  "Animal",
+                         "image":  "assets/images/products/horselicking.webp",
+                         "desc":  "Natural Himalayan salt licking block for horses, 1-2 kg. Provides essential minerals and trace elements for livestock."
+                     },
+                     {
+                         "id":  28,
+                         "title":  "Horse Licking Block 2-3 kg",
+                         "category":  "Animal",
+                         "image":  "assets/images/products/horselicking.webp",
+                         "desc":  "Himalayan mineral salt block for horses and livestock, 2-3 kg. Encourages healthy mineral intake naturally."
+                     },
+                     {
+                         "id":  29,
+                         "title":  "Horse Licking Block 3-4 kg",
+                         "category":  "Animal",
+                         "image":  "assets/images/products/horselicking.webp",
+                         "desc":  "Large Himalayan salt block for animals, 3-4 kg. Contains 84+ trace minerals essential for equine health."
+                     },
+                     {
+                         "id":  30,
+                         "title":  "Horse Licking Block 4-5 kg",
+                         "category":  "Animal",
+                         "image":  "assets/images/products/horselicking.webp",
+                         "desc":  "Extra-large Himalayan salt licking block, 4-5 kg. Long-lasting mineral supplement for horses, cattle, and goats."
+                     },
+                     {
+                         "id":  31,
+                         "title":  "Black Salt 3-5 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/edibleblacksalt.webp",
+                         "desc":  "Coarse Himalayan black salt, 3-5 mm granules. Distinctive sulfuric flavor prized in South Asian and vegan cuisine."
+                     },
+                     {
+                         "id":  32,
+                         "title":  "Black Salt 1-2 mm",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/edibleblacksalt.webp",
+                         "desc":  "Medium Himalayan black salt, 1-2 mm. Essential for chaat masala, raita, and authentic South Asian recipes."
+                     },
+                     {
+                         "id":  33,
+                         "title":  "Black Salt Fine Grain",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/edibleblacksalt.webp",
+                         "desc":  "Fine-ground Himalayan black salt powder. Ready-to-use in spice blends, tofu scrambles, and finishing dishes."
+                     },
+                     {
+                         "id":  34,
+                         "title":  "Natural Candles",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/saltcandle.webp",
+                         "desc":  "Himalayan salt-infused natural candles. Handcrafted with mineral-rich wax for a warm glow and subtle purifying effect."
+                     },
+                     {
+                         "id":  35,
+                         "title":  "Cube Salt Lamp",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/cubesaltlamp.webp",
+                         "desc":  "Modern cube-shaped Himalayan salt lamp with warm ambient glow for contemporary interiors."
+                     },
+                     {
+                         "id":  36,
+                         "title":  "Moon Salt Lamp",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/moonsaltlamp.webp",
+                         "desc":  "Moon-inspired Himalayan salt lamp designed for premium decor and calming wellness spaces."
+                     },
+                     {
+                         "id":  37,
+                         "title":  "Pyramid Salt Lamp",
+                         "category":  "Decor",
+                         "image":  "assets/images/products/pyramidshapedhimalayansaltlamp.webp",
+                         "desc":  "Handcrafted pyramid-shaped Himalayan salt lamp with elegant form and therapeutic glow."
+                     },
+                     {
+                         "id":  38,
+                         "title":  "Traditional Salt Soap Bar",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/traditionalsoapbar.webp",
+                         "desc":  "Traditional Himalayan salt soap bar for deep cleansing and naturally mineral-rich skin care."
+                     },
+                     {
+                         "id":  39,
+                         "title":  "Oval Himalayan Salt Soap Bar",
+                         "category":  "Wellness",
+                         "image":  "assets/images/products/ovalhimalayansaltsoapbar.webp",
+                         "desc":  "Oval-shaped Himalayan salt soap bar crafted for gentle exfoliation and daily wellness rituals."
+                     },
+                     {
+                         "id":  40,
+                         "title":  "White Edible Salt",
+                         "category":  "Edible",
+                         "image":  "assets/images/products/Ediblewhitesalt.webp",
+                         "desc":  "Refined white edible salt for food processing, table use, and commercial culinary applications."
+                     }
+                 ]
+}

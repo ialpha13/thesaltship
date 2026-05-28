@@ -1,0 +1,30 @@
+{
+  "categories": [
+    {
+      "id": "Decor",
+      "title": "Decor & Lamps",
+      "desc": "Authentic hand-carved Himalayan salt lamps in pink and rare white crystal, plus natural salt candles for a warm, purifying ambiance.",
+      "img": "assets/images/hero/lamp.webp",
+      "featured": true
+    },
+    {
+      "id": "Wellness",
+      "title": "Wellness & Therapy",
+      "desc": "Spa-grade Himalayan salt tiles for cooking and halotherapy, and smooth massage stones for deep therapeutic treatments.",
+      "img": "assets/images/hero/saltpan.webp",
+      "featured": true
+    },
+    {
+      "id": "Edible",
+      "title": "Gourmet Edible Salts",
+      "desc": "Premium light pink, dark pink, and black Himalayan salt in coarse, medium, and fine grain sizes for culinary and food industry use.",
+      "img": "assets/images/hero/ediblesalt.webp"
+    },
+    {
+      "id": "Animal",
+      "title": "Animal Mineral Salt",
+      "desc": "100% natural Himalayan salt licking blocks for horses, cattle, and livestock. Rich in 84+ trace minerals essential for animal health.",
+      "img": "assets/images/hero/saltpot.webp"
+    }
+  ]
+}
