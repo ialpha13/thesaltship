@@ -1,26 +1,27 @@
 ﻿﻿<?php
 require_once __DIR__ . '/../includes/functions.php';
 
-$whatsappNumber = '+923335036125';
-$whatsappMessage = 'Hello Pakwest International, I am interested in your salt products. Could I get more details?';
+$whatsappNumber = '+923169396919';
+$whatsappMessage = 'Hello The Saltship, I would like a quote for your salt products.';
 $whatsappDigits = preg_replace('/\D+/', '', $whatsappNumber);
 $whatsappUrl = 'https://wa.me/' . $whatsappDigits . '?text=' . rawurlencode($whatsappMessage);
 ?>
+
 <div class="whatsapp-chat has-new-message" data-whatsapp-url="<?= h($whatsappUrl) ?>">
   <div class="whatsapp-panel" id="whatsapp-panel" hidden>
     <span class="whatsapp-panel-header">
       <span class="whatsapp-panel-avatar-wrap" aria-hidden="true">
-        <img src="<?= h(base_url('assets/images/logopakwest.webp')) ?>" alt="" class="whatsapp-panel-avatar" loading="lazy">
+        <img src="<?= h(base_url('assets/images/logopakwest.webp')) ?>" alt="The Saltship" class="whatsapp-panel-avatar" loading="lazy">
       </span>
       <span class="whatsapp-panel-meta">
-        <span class="whatsapp-panel-brand">Pakwest International</span>
-        <span class="whatsapp-panel-status">online</span>
+        <span class="whatsapp-panel-brand">The Saltship</span>
+        <span class="whatsapp-panel-status">Available now</span>
       </span>
     </span>
 
     <span class="whatsapp-panel-chat-area">
       <span class="whatsapp-panel-bubble">
-        <strong class="whatsapp-panel-title">Welcome to Pakwest International</strong>
+        <strong class="whatsapp-panel-title">Welcome to The Saltship</strong>
         <span class="whatsapp-panel-text">We are here to help with pricing, samples, and bulk orders.</span>
         <span class="whatsapp-panel-time">12:00</span>
       </span>

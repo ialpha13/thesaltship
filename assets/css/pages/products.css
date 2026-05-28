@@ -58,6 +58,55 @@
   font-size: clamp(2.15rem, 4.9vw, 4.3rem);
   line-height: 1.03;
   color: #f7efe0;
+  display: inline-block;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
+  border-right: 0.12em solid currentColor;
+  animation: saltship-caret 0.85s step-end infinite 3.1s;
+}
+
+.products-title .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.18em);
+  animation: hero-word-appear 0.34s ease forwards;
+  animation-delay: calc(var(--word-index, 0) * 0.12s + 0.35s);
+  margin-right: 0.3ch;
+}
+.products-title .hero-word:last-child {
+  margin-right: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .products-title {
+    animation: none;
+    border-right: none;
+  }
+  .products-title .hero-word {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@keyframes saltship-typewriter {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes saltship-caret {
+  50% { border-right-color: transparent; }
+}
+
+@keyframes hero-word-appear {
+  from {
+    opacity: 0;
+    transform: translateY(0.18em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .products-copy {
@@ -1518,3 +1567,102 @@
   box-shadow: 0 16px 28px rgba(239, 130, 10, 0.36) !important;
 }
 
+
+/* Products hero typewriter effect (matches contact style) */
+.products-title.hero-typewriter {
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  animation: products-typewriter 2.4s steps(34, end) 0.4s forwards, products-caret 0.8s step-end infinite 3s;
+  border-right: 0.12em solid currentColor;
+}
+
+@keyframes products-typewriter {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes products-caret {
+  50% { border-right-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .products-title.hero-typewriter {
+    animation: none;
+    clip-path: none;
+    border-right: none;
+  }
+}
+
+/* JS-driven typewriter override */
+.hero-typewriter {
+  animation: none !important;
+  clip-path: none !important;
+  border-right: 0 !important;
+  display: block;
+}
+
+.hero-typewriter__text {
+  display: inline;
+}
+
+.hero-typewriter__text.is-typing {
+  border-right: 0.08em solid currentColor !important;
+  animation: hero-caret-blink 0.8s step-end infinite !important;
+}
+
+.products-title.hero-typewriter {
+  margin-top: 0.35rem;
+  max-width: 18ch;
+}
+
+@keyframes hero-caret-blink {
+  50% { border-right-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-typewriter,
+  .hero-typewriter__text.is-typing {
+    animation: none !important;
+    border-right: 0 !important;
+  }
+}
+
+/* Hero responsiveness hardening */
+.products-hero .container {
+  width: min(1280px, calc(100% - 1.6rem));
+  margin-inline: auto;
+}
+
+.products-title,
+.products-copy {
+  overflow-wrap: anywhere;
+}
+
+.products-title.hero-typewriter {
+  max-width: 22ch;
+}
+
+@media (max-width: 900px) {
+  .products-hero {
+    padding-top: calc(var(--hero-navbar-height, 72px) + 1.2rem);
+    padding-bottom: 1.3rem;
+  }
+
+  .products-title.hero-typewriter {
+    max-width: 100%;
+  }
+
+  .products-copy {
+    max-width: 100%;
+    font-size: clamp(0.9rem, 2.8vw, 1rem);
+  }
+}
+
+@media (max-width: 460px) {
+  .products-hero .container {
+    width: min(100%, calc(100% - 1rem));
+  }
+
+  .products-title {
+    line-height: 1.08;
+  }
+}

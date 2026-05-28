@@ -7,7 +7,14 @@ $scripts = $scripts ?? [];
     <script src="<?= h(base_url('assets/js/global.js')) ?>"></script>
     <script src="<?= h(base_url('assets/js/whatsapp-chat.js')) ?>"></script>
 <?php foreach ($scripts as $script): ?>
-    <script src="<?= h(base_url($script)) ?>"></script>
+<?php
+    $scriptPath = SITE_ROOT . '/' . ltrim((string) $script, '/');
+    $scriptUrl = base_url($script);
+    if (is_file($scriptPath)) {
+        $scriptUrl .= (strpos($scriptUrl, '?') === false ? '?' : '&') . 'v=' . filemtime($scriptPath);
+    }
+?>
+    <script src="<?= h($scriptUrl) ?>"></script>
 <?php endforeach; ?>
 
     <script>

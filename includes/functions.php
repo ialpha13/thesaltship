@@ -14,9 +14,71 @@ function base_url(string $path = ''): string
 
 function full_url(string $pageId = 'home'): string
 {
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    return $protocol . '://' . $host . page_url($pageId);
+    return site_origin() . page_url($pageId);
+}
+
+function site_origin(): string
+{
+    if (defined('CANONICAL_ORIGIN') && CANONICAL_ORIGIN !== '') {
+        $currentHost = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+        if ($currentHost !== '' && strpos($currentHost, 'localhost') === false && strpos($currentHost, '127.0.0.1') === false) {
+            return rtrim((string) CANONICAL_ORIGIN, '/');
+        }
+    }
+
+    $forwardedProto = strtolower((string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ''));
+    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+    $protocol = ($https || $forwardedProto === 'https') ? 'https' : 'http';
+
+    $forwardedHost = trim((string) ($_SERVER['HTTP_X_FORWARDED_HOST'] ?? ''));
+    $host = $forwardedHost !== '' ? $forwardedHost : (($_SERVER['HTTP_HOST'] ?? 'localhost'));
+    return $protocol . '://' . $host;
+}
+
+function absolute_url(string $path = ''): string
+{
+    return site_origin() . base_url($path);
+}
+
+function app_session_start(): bool
+{
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        return true;
+    }
+
+    if (headers_sent()) {
+        return false;
+    }
+
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+
+    return session_status() === PHP_SESSION_ACTIVE;
+}
+
+function csrf_token(string $form = 'default'): string
+{
+    if (!app_session_start()) {
+        return '';
+    }
+    $key = 'csrf_' . $form;
+    if (empty($_SESSION[$key]) || !is_string($_SESSION[$key])) {
+        $_SESSION[$key] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION[$key];
+}
+
+function csrf_validate(?string $token, string $form = 'default'): bool
+{
+    if (!app_session_start()) {
+        return false;
+    }
+    $key = 'csrf_' . $form;
+    if (!isset($_SESSION[$key]) || !is_string($_SESSION[$key]) || !is_string($token)) {
+        return false;
+    }
+    return hash_equals($_SESSION[$key], $token);
 }
 
 function load_json(string $relativePath): array

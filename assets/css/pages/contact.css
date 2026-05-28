@@ -22,7 +22,31 @@
 .contact-hero {
   position: relative;
   padding: calc(var(--hero-navbar-height, 74px) + 1.6rem) 0 2.4rem;
-  background: url('/thesaltship/assets/images/hero/contactpagehero.webp') center center / cover no-repeat;
+  background: url('/assets/images/hero/contactpagehero.webp') center center / cover no-repeat;
+}
+
+.contact-intro h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  animation: saltship-typewriter 2.4s steps(34,end) 0.4s forwards, saltship-caret 0.8s step-end infinite 3s;
+  border-right: 0.12em solid currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-intro h1 {
+    animation: none;
+    clip-path: none;
+    border-right: none;
+  }
+}
+
+@keyframes saltship-typewriter {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes saltship-caret {
+  50% { border-right-color: transparent; }
 }
 
 .contact-hero::before,
@@ -662,3 +686,63 @@
     opacity: 1 !important;
   }
 }
+
+/* JS-driven typewriter override (site-wide behavior) */
+.contact-intro h1.hero-typewriter {
+  animation: none !important;
+  clip-path: none !important;
+  border-right: 0 !important;
+  display: block;
+}
+
+.hero-typewriter__text {
+  display: inline;
+}
+
+.hero-typewriter__text.is-typing {
+  border-right: 0.08em solid currentColor !important;
+  animation: hero-caret-blink 0.8s step-end infinite !important;
+}
+
+@keyframes hero-caret-blink {
+  50% { border-right-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-typewriter__text.is-typing {
+    animation: none !important;
+    border-right: 0 !important;
+  }
+}
+
+/* Hero responsiveness hardening */
+.contact-intro h1,
+.contact-lead,
+.contact-form-card h2 {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .contact-hero {
+    padding-bottom: 1.8rem;
+  }
+
+  .contact-shell {
+    width: min(100%, calc(100% - 1rem));
+  }
+
+  .contact-layout {
+    gap: 0.9rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .contact-intro h1 {
+    line-height: 1.08;
+  }
+
+  .contact-lead {
+    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+  }
+}
+

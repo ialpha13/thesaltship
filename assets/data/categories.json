@@ -2,28 +2,28 @@
   "categories": [
     {
       "id": "Decor",
-      "title": "Decor & Lamps",
-      "desc": "Authentic hand-carved Himalayan salt lamps in pink and rare white crystal, plus natural salt candles for a warm, purifying ambiance.",
+      "title": "Decor & Wellness Lighting",
+      "desc": "Hand-carved Himalayan salt lamps and natural salt candles crafted for premium décor, wellness spaces, and lifestyle retail.",
       "img": "assets/images/hero/lamp.webp",
       "featured": true
     },
     {
       "id": "Wellness",
-      "title": "Wellness & Therapy",
-      "desc": "Spa-grade Himalayan salt tiles for cooking and halotherapy, and smooth massage stones for deep therapeutic treatments.",
+      "title": "Wellness & Halotherapy",
+      "desc": "Spa-grade Himalayan salt tiles and massage stones designed for halotherapy, wellness studios, and therapeutic interiors.",
       "img": "assets/images/hero/saltpan.webp",
       "featured": true
     },
     {
       "id": "Edible",
-      "title": "Gourmet Edible Salts",
-      "desc": "Premium light pink, dark pink, and black Himalayan salt in coarse, medium, and fine grain sizes for culinary and food industry use.",
+      "title": "Gourmet Culinary Salts",
+      "desc": "Premium pink, black and white Himalayan salt for foodservice, gourmet kitchens, and bulk culinary packaging.",
       "img": "assets/images/hero/ediblesalt.webp"
     },
     {
       "id": "Animal",
-      "title": "Animal Mineral Salt",
-      "desc": "100% natural Himalayan salt licking blocks for horses, cattle, and livestock. Rich in 84+ trace minerals essential for animal health.",
+      "title": "Animal Nutrition Salt",
+      "desc": "Natural Himalayan mineral blocks and licking salts for horses, cattle and livestock, formulated to support animal health and mineral balance.",
       "img": "assets/images/hero/saltpot.webp"
     }
   ]

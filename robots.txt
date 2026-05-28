@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block internal/system paths if added in future
+Disallow: /includes/
+Disallow: /assets/data/
+
+Sitemap: https://thesaltship.com/sitemap.php

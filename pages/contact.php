@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
+app_session_start();
 
 $formStatus = null;
 $formMessage = '';
@@ -15,6 +16,28 @@ $sendTo = 'info@thesaltship.com';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
   $formType = trim((string) ($_POST['form_type'] ?? 'contact'));
+  $csrfForm = $formType === 'home_quote' ? 'home_quote' : 'contact_form';
+  $csrfOk = csrf_validate((string) ($_POST['csrf_token'] ?? ''), $csrfForm);
+  $honeypot = trim((string) ($_POST['company_website'] ?? ''));
+  $startedAt = (int) ($_POST['form_started_at'] ?? 0);
+  $tooFast = ($startedAt > 0) && ((time() - $startedAt) < 2);
+
+  $windowKey = 'contact_submit_window';
+  $countKey = 'contact_submit_count';
+  $window = (int) ($_SESSION[$windowKey] ?? 0);
+  $count = (int) ($_SESSION[$countKey] ?? 0);
+  if ($window === 0 || (time() - $window) > 600) {
+    $window = time();
+    $count = 0;
+  }
+  $count++;
+  $_SESSION[$windowKey] = $window;
+  $_SESSION[$countKey] = $count;
+
+  if (!$csrfOk || $honeypot !== '' || $tooFast || $count > 8) {
+    $formStatus = 'error';
+    $formMessage = 'We could not verify your request. Please refresh and try again.';
+  } else {
 
   $safeLine = static function (string $value): string {
     return trim(str_replace(["\r", "\n"], ' ', $value));
@@ -31,7 +54,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
       $headers[] = 'Reply-To: ' . $safeLine($replyTo);
     }
 
-    return @mail($to, $safeLine($subject), $body, implode("\r\n", $headers));
+    return mail($to, $safeLine($subject), $body, implode("\r\n", $headers));
   };
 
   if ($formType === 'home_quote') {
@@ -58,6 +81,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $formStatus = 'success';
         $formMessage = 'Your quote request has been sent successfully. Our team will contact you shortly.';
       } else {
+        error_log('Contact form mail failed (home_quote) for email: ' . $email);
         $formStatus = 'error';
         $formMessage = 'We could not send your quote request right now. Please try again in a moment.';
       }
@@ -98,17 +122,39 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
           'message' => '',
         ];
       } else {
+        error_log('Contact form mail failed (contact) for email: ' . $contactValues['email']);
         $formStatus = 'error';
         $formMessage = 'We could not send your message right now. Please try again in a moment.';
       }
     }
   }
+  }
 }
 
 $pageTitle = 'Contact | The Saltship';
-$pageDescription = 'Contact The Saltship for industrial and Himalayan salt inquiries, export quotes, and sample requests.';
+$pageDescription = 'Contact The Saltship for Himalayan salt export inquiries, custom quotes, sample requests and wholesale order support.';
 $currentPage = 'contact';
 $forceSolid = true;
+$canonicalUrl = full_url('contact');
+$schemaData = [
+  [
+    '@context' => 'https://schema.org',
+    '@type' => 'ContactPage',
+    '@id' => $canonicalUrl . '#webpage',
+    'url' => $canonicalUrl,
+    'name' => $pageTitle,
+    'description' => $pageDescription,
+    'inLanguage' => 'en',
+  ],
+  [
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+      ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => full_url('home')],
+      ['@type' => 'ListItem', 'position' => 2, 'name' => 'Contact', 'item' => $canonicalUrl],
+    ],
+  ],
+];
 
 $styles = [
   'assets/css/navbar.css',
@@ -132,8 +178,8 @@ include __DIR__ . '/../includes/navbar.php';
       <div class="contact-layout">
         <aside class="contact-intro reveal-on-scroll">
           <p class="contact-kicker">CONTACT US</p>
-          <h1>Let's Start Your Saltship Order</h1>
-          <p class="contact-lead">Share your requirement and our team will guide you with product options, MOQ, pricing, and shipping timelines.</p>
+          <h1 class="hero-typewriter">Start Your Saltship Shipment</h1>
+          <p class="contact-lead">Submit your order details and our export team will respond with options, MOQ, pricing, shipping and sample support.</p>
 
           <div class="contact-mini-cards">
             <a href="mailto:info@thesaltship.com" class="contact-mini-card">
@@ -154,8 +200,11 @@ include __DIR__ . '/../includes/navbar.php';
             <p class="contact-alert contact-alert--<?= h($formStatus) ?>"><?= h($formMessage) ?></p>
           <?php endif; ?>
 
-          <form class="contact-form" id="contact-form" method="post" action="">
+        <form class="contact-form" id="contact-form" method="post" action="">
             <input type="hidden" name="form_type" value="contact">
+            <input type="hidden" name="csrf_token" value="<?= h(csrf_token('contact_form')) ?>">
+            <input type="hidden" name="form_started_at" value="<?= h((string) time()) ?>">
+            <input type="text" name="company_website" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
 
             <div class="contact-grid-2">
               <label>
@@ -194,8 +243,8 @@ include __DIR__ . '/../includes/navbar.php';
   <section class="contact-details" aria-label="Contact information">
     <div class="contact-shell">
       <div class="contact-details-head reveal-on-scroll">
-        <p>Quick Contact Details</p>
-        <h2>Reach The Saltship Team Your Way</h2>
+        <p>Fast Trade Support</p>
+        <h2>Reach The Saltship Export Team Today</h2>
       </div>
 
       <div class="contact-card-grid">

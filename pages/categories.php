@@ -2,9 +2,29 @@
 require_once __DIR__ . '/../includes/functions.php';
 
 $pageTitle = 'Categories | The Saltship';
-$pageDescription = 'Explore our premium salt product categories for global wholesale and industrial requirements.';
+$pageDescription = 'Explore The Saltship categories for Himalayan salt lamps, culinary salts, wellness tiles and livestock mineral blocks for global wholesale buyers.';
 $currentPage = 'categories';
 $forceSolid = true;
+$canonicalUrl = full_url('categories');
+$schemaData = [
+  [
+    '@context' => 'https://schema.org',
+    '@type' => 'CollectionPage',
+    '@id' => $canonicalUrl . '#webpage',
+    'url' => $canonicalUrl,
+    'name' => $pageTitle,
+    'description' => $pageDescription,
+    'inLanguage' => 'en',
+  ],
+  [
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+      ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => full_url('home')],
+      ['@type' => 'ListItem', 'position' => 2, 'name' => 'Categories', 'item' => $canonicalUrl],
+    ],
+  ],
+];
 
 $styles = [
   'assets/css/navbar.css',
@@ -23,18 +43,18 @@ $segments = $categoriesData['categories'] ?? [];
 $resolveImageUrl = static function (string $path): string {
   $path = trim($path);
   if ($path === '') {
-    return '/thesaltship/assets/images/hero/herobackground4.webp';
+    return base_url('assets/images/hero/pages/categories.webp');
   }
   if (strpos($path, 'http://') === 0 || strpos($path, 'https://') === 0) {
     return $path;
   }
-  if (strpos($path, '/thesaltship/') === 0) {
-    return $path;
-  }
   if (strpos($path, '/assets/') === 0) {
-    return '/thesaltship' . $path;
+    return base_url(ltrim($path, '/'));
   }
-  return '/thesaltship/' . ltrim($path, '/');
+  if (strpos($path, '/thesaltship/') === 0) {
+    return base_url(ltrim(substr($path, strlen('/thesaltship/')), '/'));
+  }
+  return base_url(ltrim($path, '/'));
 };
 
 include __DIR__ . '/../includes/head.php';
@@ -48,10 +68,10 @@ include __DIR__ . '/../includes/navbar.php';
 
     <div class="categories-shell categories-hero__shell">
       <div class="categories-hero__panel reveal-on-scroll">
-        <h1>Discover Our Salt Categories</h1>
+        <h1 class="hero-typewriter">Explore Our Collection</h1>
         <p>
-          Curated product categories for wellness, decor, gifting, and culinary use.
-          Built for wholesale buyers and private-label brands.
+          Curated export-ready salt collections for décor, wellness, culinary and livestock markets.
+          Each category is designed to meet wholesale demand and custom brand packaging requirements.
         </p>
       </div>
     </div>
@@ -72,12 +92,12 @@ include __DIR__ . '/../includes/navbar.php';
             <?php
               $imgPath = (string) ($cat['img'] ?? '');
               if ($imgPath === '') {
-                $imgPath = 'assets/images/hero/herobackground4.webp';
+                $imgPath = 'assets/images/hero/pages/categories.webp';
               }
               if (strpos($imgPath, 'http') !== 0) {
                 $checkPath = SITE_ROOT . '/' . ltrim($imgPath, '/');
                 if (!is_file($checkPath)) {
-                  $imgPath = 'assets/images/hero/herobackground4.webp';
+                  $imgPath = 'assets/images/hero/pages/categories.webp';
                 }
               }
               $imgSrc = $resolveImageUrl($imgPath);
@@ -121,32 +141,32 @@ include __DIR__ . '/../includes/navbar.php';
         <article>
           <span>?</span>
           <div>
-            <h4>100% Natural</h4>
-            <p>No additives or chemicals</p>
+            <h4>Pure Himalayan Salt</h4>
+            <p>Natural mineral content with no additives.</p>
           </div>
         </article>
 
         <article>
           <span>?</span>
           <div>
-            <h4>Sourced from Pure Mines</h4>
-            <p>Ethically sourced, premium quality</p>
+            <h4>Export-ready Quality</h4>
+            <p>Packed and graded for global shipment.</p>
           </div>
         </article>
 
         <article>
           <span>?</span>
           <div>
-            <h4>Handcrafted with Care</h4>
-            <p>Made with love and expertise</p>
+            <h4>Designed for Business</h4>
+            <p>Built to suit wholesale, private label and retail needs.</p>
           </div>
         </article>
 
         <article>
           <span>?</span>
           <div>
-            <h4>Trusted by Thousands</h4>
-            <p>Quality you can rely on</p>
+            <h4>Fast Response</h4>
+            <p>Dedicated support for trade inquiries.</p>
           </div>
         </article>
       </div>

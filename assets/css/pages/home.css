@@ -13,8 +13,36 @@ body.page-home {
   isolation: isolate;
 }
 
+.hero-copy h1 {
+  margin: 0;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  color: #ffffff;
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  animation: saltship-typewriter 2.8s steps(36,end) 0.4s forwards, saltship-caret 0.9s step-end infinite 3.2s;
+  border-right: 0.12em solid currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy h1 {
+    animation: none;
+    clip-path: none;
+    border-right: none;
+  }
+}
+
+@keyframes saltship-typewriter {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes saltship-caret {
+  50% { border-right-color: transparent; }
+}
+
 .home-hero-bg {
-  background: url('/thesaltship/assets/images/hero/herobackground6.webp') center center / cover no-repeat;
+  background: url('/assets/images/hero/herobackground6.webp') center center / cover no-repeat;
   transform: scale(1.04);
 }
 
@@ -292,3 +320,4 @@ body.page-home {
     transform: none;
   }
 }
+

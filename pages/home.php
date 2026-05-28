@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
+app_session_start();
 $categoriesData = categories();
 $productsData = products();
 
@@ -46,28 +47,47 @@ $homeProducts = array_slice($homeProducts, 0, 5);
 $resolveImageUrl = static function (string $path): string {
     $path = trim($path);
     if ($path === '') {
-        return '/thesaltship/assets/images/hero/herobackground4.webp';
+        return base_url('assets/images/hero/herobackground4.webp');
     }
 
     if (strpos($path, 'http://') === 0 || strpos($path, 'https://') === 0) {
         return $path;
     }
 
-    if (strpos($path, '/thesaltship/') === 0) {
-        return $path;
-    }
-
     if (strpos($path, '/assets/') === 0) {
-        return '/thesaltship' . $path;
+        return base_url(ltrim($path, '/'));
     }
 
-    return '/thesaltship/' . ltrim($path, '/');
+    if (strpos($path, '/thesaltship/') === 0) {
+        return base_url(ltrim(substr($path, strlen('/thesaltship/')), '/'));
+    }
+
+    return base_url(ltrim($path, '/'));
 };
 
-$pageTitle = 'The Saltship | Home';
-$pageDescription = 'Source premium edible and industrial salt with export-grade packing and dependable global shipment timelines.';
+$pageTitle = 'The Saltship | Himalayan Salt Exporter';
+$pageDescription = 'The Saltship exports premium Himalayan salt products for decor, wellness, culinary and animal nutrition markets with scalable packaging and worldwide delivery.';
 $currentPage = 'home';
 $forceSolid = false;
+$canonicalUrl = full_url('home');
+$schemaData = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebPage',
+        '@id' => $canonicalUrl . '#webpage',
+        'url' => $canonicalUrl,
+        'name' => $pageTitle,
+        'description' => $pageDescription,
+        'inLanguage' => 'en',
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $canonicalUrl],
+        ],
+    ],
+];
 
 $styles = [
     'assets/css/navbar.css',
@@ -91,19 +111,18 @@ include __DIR__ . '/../includes/head.php';
     <div class="frame-shell" data-parallax-section>
       <div class="hero-body">
         <section class="hero-copy" aria-label="Hero message">
-          <h1>TASTE THE PURITY<br>OF SALT SHIP</h1>
+          <h1 class="hero-typewriter">Premium Himalayan Salt</h1>
           <p id="hero-mode-subtext">
-            Source premium edible and industrial salt with export-grade packing,
-            dependable shipment timelines, and quality you can scale with confidence.
+            The Saltship exports premium Himalayan salt products for décor, culinary, wellness and livestock businesses with trade-ready packaging, fast quoting and global shipping.
           </p>
           <div class="hero-cta-row">
-            <a class="order-btn" href="/thesaltship/pages/contact.php">REQUEST QUOTE</a>
-            <a class="order-btn order-btn--ghost" href="/thesaltship/pages/products.php">VIEW PRODUCTS</a>
+            <a class="order-btn" href="<?= h(page_url('contact')) ?>">REQUEST QUOTE</a>
+            <a class="order-btn order-btn--ghost" href="<?= h(page_url('products')) ?>">VIEW PRODUCTS</a>
           </div>
         </section>
 
         <section class="center-panel" aria-label="Product preview panel">
-          <img id="hero-lamp" class="hero-lamp" src="/thesaltship/assets/images/hero/pinksaltlampoff.webp" alt="Lamp in off state">
+          <img id="hero-lamp" class="hero-lamp" src="<?= h(base_url('assets/images/hero/pinksaltlampoff.webp')) ?>" alt="Lamp in off state">
           <p id="hero-mode-title" class="hero-mode-title">Pink Salt Lamp - Glow Preview</p>
 
           <div class="hero-variants" role="group" aria-label="Select hero product">
@@ -135,8 +154,8 @@ include __DIR__ . '/../includes/head.php';
     <div class="home-wrap">
       <header class="home-section-head">
         <span class="home-kicker">SHOP BY CATEGORY</span>
-        <h2>Handcrafted Salt Categories</h2>
-        <p>Discover premium salt ranges crafted for wellness, gifting, and everyday living.</p>
+        <h2>Salt Collections for Every Market</h2>
+        <p>Choose from curated Himalayan salt lines designed for décor, wellness, culinary and livestock use.</p>
       </header>
       <div class="home-categories-static">
         <?php foreach ($homeCategories as $cat): ?>
@@ -168,7 +187,7 @@ include __DIR__ . '/../includes/head.php';
           <article class="home-category-slide" data-parallax-item>
             <a class="home-category-slide__link" href="<?= h(category_products_url($categorySlug)) ?>" aria-label="Explore <?= h($title) ?>">
               <div class="home-category-slide__media">
-                <img src="<?= h($imgSrc) ?>" alt="<?= h($title) ?>" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/thesaltship/assets/images/hero/herobackground4.webp';">
+                <img src="<?= h($imgSrc) ?>" alt="<?= h($title) ?>" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='<?= h(base_url('assets/images/hero/herobackground4.webp')) ?>';">
               </div>
               <div class="home-category-slide__body">
                 <span class="home-category-slide__kicker">Category</span>
@@ -187,9 +206,9 @@ include __DIR__ . '/../includes/head.php';
     <div class="home-wrap">
       <header class="home-section-head">
         <span class="home-kicker">OUR BESTSELLERS</span>
-        <h2>Top Picks from The Saltship</h2>
+        <h2>Featured Export-ready Products</h2>
         <span class="home-products__divider" aria-hidden="true"></span>
-        <p>Loved by thousands for purity, quality and wellness benefits.</p>
+        <p>Selected for quality, consistency and global demand across hospitality, retail and wellness channels.</p>
       </header>
       <div class="home-products-grid">
         <?php foreach ($homeProducts as $prod): ?>
@@ -210,7 +229,7 @@ include __DIR__ . '/../includes/head.php';
           <article class="product-card home-product-card-shell" data-parallax-item>
             <a class="product-card-hit" href="<?= h(product_detail_url((string) ($prod['category_slug'] ?? ''), (string) ($prod['slug'] ?? ''))) ?>" aria-label="View <?= h($title) ?>">
               <div class="product-card-image-wrap">
-                <img class="product-card-image" src="<?= h($imgSrc) ?>" alt="<?= h($title) ?>" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/thesaltship/assets/images/hero/herobackground4.webp';">
+                <img class="product-card-image" src="<?= h($imgSrc) ?>" alt="<?= h($title) ?>" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='<?= h(base_url('assets/images/hero/herobackground4.webp')) ?>';">
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title"><?= h($title) ?></h3>
@@ -230,11 +249,14 @@ include __DIR__ . '/../includes/head.php';
       <div class="home-quote__panel">
         <aside class="home-quote__side">
           <span class="home-kicker">GET A CUSTOM QUOTE</span>
-          <h2>TELL US YOUR<br>REQUIREMENT</h2>
-          <p>Share your quantity, product type and delivery details. Our team will get back to you shortly.</p>
+          <h2>Share Your<br>Order Details</h2>
+          <p>Send your product specification, volume and delivery location. We will reply with packing, pricing and shipping options.</p>
         </aside>
-        <form class="home-quote__form" action="/thesaltship/pages/contact.php" method="post">
+        <form class="home-quote__form" action="<?= h(page_url('contact')) ?>" method="post">
           <input type="hidden" name="form_type" value="home_quote">
+          <input type="hidden" name="csrf_token" value="<?= h(csrf_token('home_quote')) ?>">
+          <input type="hidden" name="form_started_at" value="<?= h((string) time()) ?>">
+          <input type="text" name="company_website" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
           <label>
             <span>Full Name *</span>
             <input type="text" name="fullName" placeholder="Your full name" required>

@@ -13,5 +13,6 @@ if ($baseUrl === '') {
 
 define('SITE_ROOT', $siteRoot);
 define('BASE_URL', rtrim($baseUrl, '/') . '/');
+define('CANONICAL_ORIGIN', 'https://thesaltship.com');
 
 define('APP_NAME', 'The Saltship');

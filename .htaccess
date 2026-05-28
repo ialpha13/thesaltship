@@ -1,0 +1,5 @@
+Options -Indexes
+
+ErrorDocument 403 /pages/errors/403.php
+ErrorDocument 404 /pages/errors/404.php
+ErrorDocument 500 /pages/errors/500.php

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.querySelector('.whatsapp-chat');
   if (!root) return;
+  var isHomePage = document.body && document.body.classList.contains('page-home');
+  var homeHero = isHomePage ? document.getElementById('hero') : null;
 
   var toggle = root.querySelector('.whatsapp-button');
   var panel = root.querySelector('.whatsapp-panel');
@@ -39,6 +41,29 @@ document.addEventListener('DOMContentLoaded', function () {
     startChat.addEventListener('click', function () {
       setOpen(false);
     });
+  }
+
+  if (isHomePage && homeHero) {
+    var ticking = false;
+    var updateVisibility = function () {
+      var rect = homeHero.getBoundingClientRect();
+      var passedHero = rect.bottom <= 0;
+      root.classList.toggle('is-home-hero-hidden', !passedHero);
+      if (!passedHero) {
+        setOpen(false);
+      }
+      ticking = false;
+    };
+
+    var onScroll = function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateVisibility);
+    };
+
+    updateVisibility();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
   }
 
   // show hint badge after a short delay if user has not opened panel

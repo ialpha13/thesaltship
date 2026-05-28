@@ -17,7 +17,7 @@
 .site-footer__bg {
   position: absolute;
   inset: 0;
-  background: url('/thesaltship/assets/images/footerbackground.webp') center center / cover no-repeat;
+  background: url('/assets/images/footerbackground.webp') center center / cover no-repeat;
   opacity: 0.22;
   pointer-events: none;
 }
@@ -418,3 +418,4 @@
     margin-top: 1rem;
   }
 }
+

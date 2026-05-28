@@ -43,7 +43,7 @@
   background:
     radial-gradient(circle at 15% 20%, rgba(255, 197, 125, 0.22), rgba(0, 0, 0, 0) 44%),
     linear-gradient(180deg, rgba(35, 24, 17, 0.84), rgba(27, 21, 16, 0.9)),
-    url('/thesaltship/assets/images/hero/herobackground5.webp') center center / cover no-repeat;
+    url('/assets/images/hero/herobackground5.webp') center center / cover no-repeat;
 }
 
 .about-hero__overlay {
@@ -84,7 +84,7 @@
 .about-hero__media {
   min-height: 390px;
   border-radius: 14px;
-  background: url('/thesaltship/assets/images/hero/herobackground4.webp') center center / cover no-repeat;
+  background: url('/assets/images/hero/herobackground4.webp') center center / cover no-repeat;
 }
 
 .about-partner {
@@ -148,7 +148,7 @@
 .about-partner__image {
   min-height: 440px;
   border-radius: 18px;
-  background: url('/thesaltship/assets/images/hero/herobackground3.webp') center center / cover no-repeat;
+  background: url('/assets/images/hero/herobackground3.webp') center center / cover no-repeat;
 }
 
 .about-values {
@@ -241,7 +241,7 @@
   margin-top: 1.1rem;
   min-height: 130px;
   border-radius: 14px;
-  background: url('/thesaltship/assets/images/hero/herobackground2.webp') center center / cover no-repeat;
+  background: url('/assets/images/hero/herobackground2.webp') center center / cover no-repeat;
 }
 
 .about-choose__right ul {
@@ -286,7 +286,7 @@
   padding: 1.4rem;
   background:
     linear-gradient(90deg, rgba(39, 25, 16, 0.86), rgba(39, 25, 16, 0.46)),
-    url('/thesaltship/assets/images/hero/herobackground6.webp') center center / cover no-repeat;
+    url('/assets/images/hero/herobackground6.webp') center center / cover no-repeat;
   color: #f7f0e4;
 }
 
@@ -366,7 +366,7 @@
   border-bottom: 1px solid rgba(212, 163, 90, 0.24);
   background:
     linear-gradient(102deg, rgba(15, 17, 21, 0.78), rgba(43, 33, 24, 0.58) 44%, rgba(43, 33, 24, 0.18) 62%, rgba(15, 17, 21, 0.42)),
-    url('/thesaltship/assets/images/hero/herobackground5.webp') center center / cover no-repeat;
+    url('/assets/images/hero/herobackground5.webp') center center / cover no-repeat;
 }
 
 .about-hero__text h1,
@@ -424,7 +424,7 @@
   border: 1px solid rgba(212, 163, 90, 0.26);
   background:
     linear-gradient(95deg, rgba(15, 17, 21, 0.72), rgba(43, 33, 24, 0.48)),
-    url('/thesaltship/assets/images/hero/herobackground6.webp') center center / cover no-repeat;
+    url('/assets/images/hero/herobackground6.webp') center center / cover no-repeat;
 }
 
 .hero-fx {
@@ -469,5 +469,6 @@
   filter: brightness(1.04);
   box-shadow: 0 16px 28px rgba(239, 130, 10, 0.36) !important;
 }
+
 
 

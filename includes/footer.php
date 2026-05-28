@@ -6,20 +6,20 @@
   <div class="site-footer__inner">
     <div class="site-footer__grid">
       <section>
-        <img class="site-footer__logo" src="/thesaltship/assets/images/logopakwest.webp" alt="The Saltship">
+        <img class="site-footer__logo" src="<?= h(base_url('assets/images/logopakwest.webp')) ?>" alt="The Saltship">
         <p class="site-footer__brand-text">
-          Pure Himalayan salt products crafted for global wellness, culinary, and lifestyle brands.
+          Trusted Himalayan salt solutions for decor, culinary, wellness and animal nutrition markets.
         </p>
-        <a class="site-footer__quote" href="/thesaltship/pages/contact.php">Get Quote</a>
+        <a class="site-footer__quote" href="<?= h(page_url('contact')) ?>">Get Quote</a>
       </section>
 
       <section>
         <h4 class="site-footer__heading">Quick Links</h4>
         <nav class="footer-nav site-footer__links" aria-label="Footer links">
-          <a class="footer-nav-link" href="/thesaltship/pages/home.php">Home</a>
-          <a class="footer-nav-link" href="/thesaltship/pages/products.php">Products</a>
-          <a class="footer-nav-link" href="/thesaltship/pages/categories.php">Categories</a>
-          <a class="footer-nav-link" href="/thesaltship/pages/contact.php">Contact</a>
+          <a class="footer-nav-link" href="<?= h(page_url('home')) ?>">Home</a>
+          <a class="footer-nav-link" href="<?= h(page_url('products')) ?>">Products</a>
+          <a class="footer-nav-link" href="<?= h(page_url('categories')) ?>">Categories</a>
+          <a class="footer-nav-link" href="<?= h(page_url('contact')) ?>">Contact</a>
         </nav>
       </section>
 
@@ -27,7 +27,7 @@
         <h4 class="site-footer__heading">Get In Touch</h4>
         <div class="site-footer__contact-list">
           <p><span>MAIL</span> info@thesaltship.com</p>
-          <p><span>CALL</span> +92 316 3269098</p>
+          <p><span>CALL</span> +92 316 9396919</p>
           <p><span>LOC</span> Karachi, Pakistan</p>
         </div>
       </section>
@@ -49,7 +49,7 @@
   <div class="whatsapp-panel" aria-hidden="true">
     <div class="whatsapp-panel-header">
       <div class="whatsapp-panel-avatar-wrap">
-        <img class="whatsapp-panel-avatar" src="/thesaltship/assets/images/logopakwest.webp" alt="The Saltship" loading="lazy">
+        <img class="whatsapp-panel-avatar" src="<?= h(base_url('assets/images/logopakwest.webp')) ?>" alt="The Saltship" loading="lazy">
       </div>
       <div class="whatsapp-panel-meta">
         <span class="whatsapp-panel-brand">The Saltship</span>
@@ -66,7 +66,7 @@
     </div>
 
     <div class="whatsapp-panel-input-row">
-      <a class="whatsapp-start-chat" href="https://wa.me/923163269098?text=Hello%20The%20Saltship%2C%20I%20want%20to%20request%20a%20quote." target="_blank" rel="noopener">Start Chat</a>
+      <a class="whatsapp-start-chat" href="https://wa.me/923169396919?text=Hello%20The%20Saltship%2C%20I%20would%20like%20a%20quote%20for%20your%20salt%20products." target="_blank" rel="noopener">Start Chat</a>
     </div>
   </div>
 
@@ -80,3 +80,4 @@
     <span class="whatsapp-message-hint">Chat with us</span>
   </button>
 </div>
+

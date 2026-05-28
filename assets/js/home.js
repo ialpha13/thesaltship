@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var assetUrl = function (path) {
+    var clean = String(path || "").replace(/^\//, "");
+    try {
+      return new URL(clean, document.baseURI).href;
+    } catch (e) {
+      var baseUrl = (window.APP_BASE_URL || "/").replace(/\/+$/, "/");
+      return baseUrl + clean;
+    }
+  };
   requestAnimationFrame(function () {
     document.body.classList.add("is-loaded");
   });
@@ -10,6 +19,45 @@ document.addEventListener("DOMContentLoaded", function () {
   var modeTitle = document.getElementById("hero-mode-title");
   var variantButtons = document.querySelectorAll(".hero-variant");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var typeNodes = document.querySelectorAll(".hero-typewriter");
+  if (typeNodes.length) {
+    typeNodes.forEach(function (node) {
+      var fullText = (node.textContent || "").trim();
+      if (!fullText || node.dataset.typewriterReady === "1") return;
+      node.dataset.typewriterReady = "1";
+
+      if (reduceMotion) {
+        node.classList.add("is-typed");
+        return;
+      }
+
+      var lockedHeight = node.getBoundingClientRect().height;
+      if (lockedHeight > 0) {
+        node.style.minHeight = lockedHeight + "px";
+      }
+
+      node.textContent = "";
+      var typedSpan = document.createElement("span");
+      typedSpan.className = "hero-typewriter__text is-typing";
+      node.appendChild(typedSpan);
+
+      var i = 0;
+      var tick = function () {
+        i += 1;
+        typedSpan.textContent = fullText.slice(0, i);
+        if (i < fullText.length) {
+          window.setTimeout(tick, 38);
+        } else {
+          typedSpan.classList.remove("is-typing");
+          typedSpan.classList.add("is-typed");
+          node.classList.add("is-typed");
+        }
+      };
+
+      window.setTimeout(tick, 260);
+    });
+  }
 
   if (lamp && switchInput && switchLabel) {
     var selectedProduct = "pinksaltlamp";
@@ -23,9 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     var productImages = {
-      pinksaltlamp: { off: "/thesaltship/assets/images/hero/pinksaltlampoff.webp", on: "/thesaltship/assets/images/hero/pinksaltlampon.webp" },
-      whitesaltlamp: { off: "/thesaltship/assets/images/hero/whitesaltlampoff.webp", on: "/thesaltship/assets/images/hero/whitesaltlampon.webp" },
-      saltcandle: { off: "/thesaltship/assets/images/hero/saltcandleoff.webp", on: "/thesaltship/assets/images/hero/saltcandleon.webp" }
+      pinksaltlamp: { off: assetUrl("assets/images/hero/pinksaltlampoff.webp"), on: assetUrl("assets/images/hero/pinksaltlampon.webp") },
+      whitesaltlamp: { off: assetUrl("assets/images/hero/whitesaltlampoff.webp"), on: assetUrl("assets/images/hero/whitesaltlampon.webp") },
+      saltcandle: { off: assetUrl("assets/images/hero/saltcandleoff.webp"), on: assetUrl("assets/images/hero/saltcandleon.webp") }
     };
 
     function renderState() {

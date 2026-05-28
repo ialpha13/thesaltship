@@ -40,7 +40,7 @@ body {
     min-height: clamp(620px, 76vh, 900px);
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
-        url("/thesaltship/assets/images/hero/herobackground6.webp") center center / cover no-repeat,
+        url("/assets/images/hero/herobackground6.webp") center center / cover no-repeat,
         var(--cream);
     background-attachment: scroll;
     overflow: hidden;
@@ -510,7 +510,7 @@ body.is-loaded .center-panel { opacity: 1; transform: translateY(0); }
 
 .promise__media {
     min-height: 420px;
-    background: url("/thesaltship/assets/images/hero/herobackground4.webp") center center / cover no-repeat;
+    background: url("/assets/images/hero/herobackground4.webp") center center / cover no-repeat;
 }
 
 .home-wrap {
@@ -1380,7 +1380,7 @@ body.is-loaded .center-panel { opacity: 1; transform: translateY(0); }
     text-align: center;
     background:
         linear-gradient(180deg, rgba(247, 241, 231, 0.62), rgba(245, 236, 223, 0.58)),
-        url("/thesaltship/assets/images/tiles.webp") center center / cover no-repeat;
+        url("/assets/images/tiles.webp") center center / cover no-repeat;
     background-blend-mode: normal;
 }
 
@@ -1406,7 +1406,7 @@ body.is-loaded .center-panel { opacity: 1; transform: translateY(0); }
     border-radius: 8px;
     background:
         radial-gradient(circle at 20% 75%, rgba(245, 173, 120, 0.55), rgba(0, 0, 0, 0) 36%),
-        url("/thesaltship/assets/images/tiles.webp") center bottom / cover no-repeat;
+        url("/assets/images/tiles.webp") center bottom / cover no-repeat;
 }
 
 .home-quote__form {
@@ -2274,7 +2274,7 @@ img {
   border: 1px solid #d6e0ca;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 252, 244, 0.9)),
-    url("/thesaltship/assets/images/tiles.webp") center center / cover no-repeat;
+    url("/assets/images/tiles.webp") center center / cover no-repeat;
 }
 
 .home-quote__form {
@@ -2336,3 +2336,115 @@ img {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(216, 116, 7, 0.24);
 }
+
+/* Home hero typewriter effect (matches contact style) */
+.hero-body h1.hero-typewriter {
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  animation: home-typewriter 2.4s steps(34, end) 0.4s forwards, home-caret 0.8s step-end infinite 3s;
+  border-right: 0.12em solid currentColor;
+}
+
+@keyframes home-typewriter {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes home-caret {
+  50% { border-right-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-body h1.hero-typewriter {
+    animation: none;
+    clip-path: none;
+    border-right: none;
+  }
+}
+
+/* JS-driven typewriter override */
+.hero-typewriter {
+  animation: none !important;
+  clip-path: none !important;
+  border-right: 0 !important;
+  display: block;
+}
+
+.hero-typewriter__text {
+  display: inline;
+}
+
+.hero-typewriter__text.is-typing {
+  border-right: 0.08em solid currentColor !important;
+  animation: hero-caret-blink 0.8s step-end infinite !important;
+}
+
+@keyframes hero-caret-blink {
+  50% { border-right-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-typewriter,
+  .hero-typewriter__text.is-typing {
+    animation: none !important;
+    border-right: 0 !important;
+  }
+}
+
+/* Hero responsiveness hardening */
+.hero-card,
+.frame-shell,
+.hero-body,
+.hero-copy,
+.center-panel {
+  min-width: 0;
+}
+
+.hero-copy h1,
+.hero-copy p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .hero-body {
+    gap: clamp(0.8rem, 2.8vw, 1.2rem);
+    padding-left: clamp(0.8rem, 3.5vw, 1.1rem);
+    padding-right: clamp(0.8rem, 3.5vw, 1.1rem);
+  }
+
+  .hero-copy,
+  .center-panel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-cta-row {
+    flex-wrap: wrap;
+  }
+
+  .hero-cta-row .order-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-body {
+    min-height: clamp(460px, 74vh, 640px);
+  }
+
+  .hero-copy h1 {
+    line-height: 1.06;
+    letter-spacing: 0;
+  }
+
+  .hero-copy p {
+    font-size: clamp(0.82rem, 3.6vw, 0.95rem);
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-body {
+    min-height: clamp(640px, 74vh, 940px);
+  }
+}
+

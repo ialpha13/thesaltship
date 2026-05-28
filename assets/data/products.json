@@ -180,7 +180,7 @@
                          "title":  "Rough Rocks",
                          "category":  "Edible",
                          "image":  "assets/images/products/roughsaltrocks.webp",
-                         "desc":  "Raw unprocessed Himalayan salt rocks. Used for licking blocks, d�cor, salt grinding, and industrial applications."
+                         "desc":  "Raw unprocessed Himalayan salt rocks. Used for licking blocks, decor, salt grinding, and industrial applications."
                      },
                      {
                          "id":  26,
@@ -289,3 +289,4 @@
                      }
                  ]
 }
+

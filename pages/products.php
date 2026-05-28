@@ -2,9 +2,10 @@
 require_once __DIR__ . '/../includes/functions.php';
 
 $pageTitle = 'Products | The Saltship';
-$pageDescription = 'Browse our Himalayan and industrial salt products with category-wise listings and product variations.';
+$pageDescription = 'Browse The Saltship product catalog for Himalayan salt lamps, wellness tiles, edible salts and animal-grade mineral blocks with bulk export options.';
 $currentPage = 'products';
 $forceSolid = true;
+$metaRobots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
 $styles = [
   'assets/css/navbar.css',
@@ -138,6 +139,7 @@ if ($productParam !== '') {
 }
 if ($view === 'not-found') {
   http_response_code(404);
+  $metaRobots = 'noindex, nofollow';
 }
 
 $flatProducts = [];
@@ -159,21 +161,91 @@ if ($view === 'product' && $activeProduct !== null) {
   $pageDescription = 'Explore all available sizes and variations for ' . (string) ($activeProduct['title'] ?? 'this product') . '.';
 }
 
+$canonicalUrl = full_url('products');
+if ($view === 'category' && $activeCategory !== null) {
+  $canonicalUrl = full_url('products') . '?category=' . rawurlencode((string) ($activeCategory['slug'] ?? ''));
+}
+if ($view === 'product' && $activeCategory !== null && $activeProduct !== null) {
+  $canonicalUrl = full_url('products')
+    . '?category=' . rawurlencode((string) ($activeCategory['slug'] ?? ''))
+    . '&product=' . rawurlencode((string) ($activeProduct['slug'] ?? ''));
+}
+
+$schemaPageType = 'CollectionPage';
+if ($view === 'product') {
+  $schemaPageType = 'Product';
+}
+if ($view === 'not-found') {
+  $schemaPageType = 'WebPage';
+}
+
+$schemaData = [
+  [
+    '@context' => 'https://schema.org',
+    '@type' => $schemaPageType,
+    '@id' => $canonicalUrl . '#webpage',
+    'url' => $canonicalUrl,
+    'name' => $pageTitle,
+    'description' => $pageDescription,
+    'inLanguage' => 'en',
+  ],
+  [
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+      ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => full_url('home')],
+      ['@type' => 'ListItem', 'position' => 2, 'name' => 'Products', 'item' => full_url('products')],
+    ],
+  ],
+];
+
+if ($view === 'product' && $activeCategory !== null && $activeProduct !== null) {
+  $productImagePath = (string) ($activeProduct['image'] ?? (($activeProduct['variations'][0]['image'] ?? '') ?: 'assets/images/hero/herobackground4.webp'));
+  if ($productImagePath === '') {
+    $productImagePath = 'assets/images/hero/herobackground4.webp';
+  }
+  if (strpos($productImagePath, 'http://') === 0 || strpos($productImagePath, 'https://') === 0) {
+    $productImage = $productImagePath;
+  } elseif (strpos($productImagePath, '/thesaltship/') === 0) {
+    $productImage = absolute_url(ltrim(substr($productImagePath, strlen('/thesaltship/')), '/'));
+  } elseif (strpos($productImagePath, '/assets/') === 0) {
+    $productImage = site_origin() . $productImagePath;
+  } else {
+    $productImage = absolute_url(ltrim($productImagePath, '/'));
+  }
+
+  $schemaData[] = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Product',
+    '@id' => $canonicalUrl . '#product',
+    'name' => (string) ($activeProduct['title'] ?? 'Product'),
+    'description' => (string) ($activeProduct['summary'] ?? $pageDescription),
+    'category' => (string) ($activeCategory['title'] ?? 'Salt Products'),
+    'image' => [$productImage],
+    'brand' => [
+      '@type' => 'Brand',
+      'name' => 'The Saltship',
+    ],
+    'sku' => (string) ($activeProduct['slug'] ?? ''),
+    'url' => $canonicalUrl,
+  ];
+}
+
 $resolveImageUrl = static function (string $path): string {
   $path = trim($path);
   if ($path === '') {
-    return '/thesaltship/assets/images/hero/herobackground4.webp';
+    return base_url('assets/images/hero/herobackground4.webp');
   }
   if (strpos($path, 'http://') === 0 || strpos($path, 'https://') === 0) {
     return $path;
   }
-  if (strpos($path, '/thesaltship/') === 0) {
-    return $path;
-  }
   if (strpos($path, '/assets/') === 0) {
-    return '/thesaltship' . $path;
+    return base_url(ltrim($path, '/'));
   }
-  return '/thesaltship/' . ltrim($path, '/');
+  if (strpos($path, '/thesaltship/') === 0) {
+    return base_url(ltrim(substr($path, strlen('/thesaltship/')), '/'));
+  }
+  return base_url(ltrim($path, '/'));
 };
 
 include __DIR__ . '/../includes/head.php';
@@ -184,8 +256,8 @@ include __DIR__ . '/../includes/navbar.php';
     <section class="products-hero products-hero--catalog hero-fx" data-hero-fx>
       <div class="container mx-auto px-6 lg:px-12">
         <span class="products-kicker hero-animate delay-100">Global Export Catalog</span>
-        <h1 class="products-title hero-animate delay-200">Pure. Natural. Essential.</h1>
-        <p class="products-copy hero-animate delay-300">Discover our wide range of premium salt products, sourced from trusted mines and crafted to meet global quality standards.</p>
+        <h1 class="products-title hero-animate delay-200 hero-typewriter">Himalayan Salt Products for Trade</h1>
+        <p class="products-copy hero-animate delay-300">Explore export-ready Himalayan salt products from Pakistan, packed for commercial, wellness and culinary shipments worldwide.</p>
       </div>
     </section>
 
@@ -206,10 +278,10 @@ include __DIR__ . '/../includes/navbar.php';
       </div>
 
       <div class="products-top-benefits" aria-label="Service highlights">
-        <article><span>&#9678;</span><div><h4>Premium Quality</h4><p>Tested &amp; Certified</p></div></article>
-        <article><span>&#9678;</span><div><h4>Sustainable Practices</h4><p>Eco-friendly packaging</p></div></article>
-        <article><span>&#9678;</span><div><h4>Secure Payments</h4><p>100% safe checkout</p></div></article>
-        <article><span>&#9678;</span><div><h4>Fast &amp; Reliable</h4><p>Worldwide shipping</p></div></article>
+        <article><span>&#9678;</span><div><h4>Export-ready Goods</h4><p>Trade volumes packed and shipped worldwide.</p></div></article>
+        <article><span>&#9678;</span><div><h4>Natural Source</h4><p>Direct from Himalayan mine deposits.</p></div></article>
+        <article><span>&#9678;</span><div><h4>Custom Packaging</h4><p>Label and bulk options for brand requirements.</p></div></article>
+        <article><span>&#9678;</span><div><h4>Reliable Delivery</h4><p>Trusted logistics for international buyers.</p></div></article>
       </div>
 
       <div class="products-grid" id="products-grid">
@@ -251,7 +323,10 @@ include __DIR__ . '/../includes/navbar.php';
     <section class="products-hero products-hero--category hero-fx" data-hero-fx>
       <div class="container mx-auto px-6 lg:px-12">
         <span class="products-kicker hero-animate delay-100">Category</span>
-        <h1 class="products-title hero-animate delay-200"><?= h((string) ($activeCategory['title'] ?? 'Category')) ?></h1>
+        <?php
+          $categoryTitle = trim((string) ($activeCategory['title'] ?? 'Category'));
+        ?>
+        <h1 class="products-title hero-animate delay-200 hero-typewriter"><?= h($categoryTitle) ?></h1>
         <p class="products-copy hero-animate delay-300"><?= h((string) ($activeCategory['desc'] ?? '')) ?></p>
       </div>
     </section>
@@ -308,7 +383,10 @@ include __DIR__ . '/../includes/navbar.php';
     <section class="products-hero products-hero--product hero-fx" data-hero-fx>
       <div class="container mx-auto px-6 lg:px-12">
         <span class="products-kicker hero-animate delay-100"><?= h((string) ($activeCategory['title'] ?? 'Category')) ?></span>
-        <h1 class="products-title hero-animate delay-200"><?= h((string) ($activeProduct['title'] ?? 'Product')) ?></h1>
+        <?php
+          $productTitle = trim((string) ($activeProduct['title'] ?? 'Product'));
+        ?>
+        <h1 class="products-title hero-animate delay-200 hero-typewriter"><?= h($productTitle) ?></h1>
         <p class="products-copy hero-animate delay-300">All available sizes and design variations are listed below for wholesale inquiry and custom packaging requests.</p>
       </div>
     </section>
@@ -362,8 +440,8 @@ include __DIR__ . '/../includes/navbar.php';
   <?php else: ?>
     <section class="products-hero products-hero--notfound hero-fx" data-hero-fx>
       <div class="container mx-auto px-6 lg:px-12">
-        <h1 class="products-title hero-animate delay-100">Product Not Found</h1>
-        <p class="products-copy hero-animate delay-200">The requested category or product does not exist.</p>
+        <h1 class="products-title hero-animate delay-100 hero-typewriter">Product Not Found</h1>
+        <p class="products-copy hero-animate delay-200">The requested product or category could not be found. Please browse our catalog or contact us for a custom solution.</p>
         <a class="product-detail-cta hero-animate delay-300" href="<?= h(products_url()) ?>">Back to Products</a>
       </div>
     </section>
