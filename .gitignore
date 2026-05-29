@@ -1,0 +1,19 @@
+# PHP and WAMP
+/vendor/
+/node_modules/
+/.env
+/.vscode/
+.DS_Store
+Thumbs.db
+
+# IDE files
+*.log
+*.cache
+*.zip
+
+# System files
+ehthumbs.db
+Icon?
+
+# Composer
+composer.lock
